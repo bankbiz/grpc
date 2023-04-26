@@ -15,6 +15,7 @@
 
 from concurrent import futures
 import logging
+import time
 
 import grpc
 import helloworld_pb2
@@ -24,6 +25,9 @@ import helloworld_pb2_grpc
 class Greeter(helloworld_pb2_grpc.GreeterServicer):
 
     def SayHello(self, request, context):
+        start = time.time()
+        time.sleep(2)
+        print(f"Server Time: {time.time() - start}")
         return helloworld_pb2.HelloReply(message='Hello, %s!' % request.name)
 
 
